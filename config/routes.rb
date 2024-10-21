@@ -42,7 +42,7 @@ Exhibits::Application.routes.draw do
     end
 
     get '/search_tips' => 'catalog#search_tips'
-    get '/edit_image_area' => 'viewers#_mirador3'
+    get '/:exhibit_id/select_image_area/:id' => 'catalog#select_image_area' 
 
     resources :solr_documents, only: [:show], path: '/catalog', controller: 'catalog'
     resource :catalog, only: [:index], as: 'catalog', path: '/catalog', controller: 'catalog' do
