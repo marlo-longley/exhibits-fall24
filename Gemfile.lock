@@ -1,7 +1,7 @@
 PATH
   remote: ../spotlight
   specs:
-    blacklight-spotlight (4.2.0)
+    blacklight-spotlight (4.3.0)
       activejob-status
       acts-as-taggable-on (>= 5.0, < 12)
       autoprefixer-rails

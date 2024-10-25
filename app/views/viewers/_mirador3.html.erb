@@ -2,7 +2,6 @@
 <%# exhibit_specific_manifest is null here ... %>
 
 <% exhibit_specific_manifest = document.exhibit_specific_manifest(current_exhibit.required_viewer.custom_manifest_pattern) %>
-<%# debugger %>
 <% if exhibit_specific_manifest.present? %>
   <%= content_tag :iframe, '',
         src: "#{Settings.iiif_embed.url}?#{{ url: exhibit_specific_manifest, image_tools: true, canvas_id: document.canvas.iiif_id, workspace_state: 'test1' }.to_query}",

@@ -44,6 +44,7 @@ module ApplicationHelper
       render partial: current_exhibit.required_viewer.to_partial_path,
              locals: { document: document, block: block, canvas: canvas }
     else
+      #current_exhibit.required_viewer.default_viewer_path = oembed_default
       render partial: current_exhibit.required_viewer.default_viewer_path,
              locals: { document: document, block: block, canvas: canvas }
     end
@@ -55,12 +56,29 @@ module ApplicationHelper
   # @param [Integer] canvas_id
   def custom_render_oembed_tag_async(document, canvas_id, block)
     url = context_specific_oembed_url(document)
+    
+    # fake data
+    file_path = Rails.root.join('fakestate.json')
+    json_content = File.read(file_path)
+    json_data = JSON.parse(json_content)
+    
+    # TODO -- the windowId can't be "main" bc Mirador overwrites that.
+    companionWindows = json_data['companionWindows']
+    viewers = json_data['viewers']
+    windows = json_data['windows']
+    workspace = json_data['workspace']
+
     content_tag :div, '', data: {
       embed_url: blacklight_oembed_engine.embed_url(
         url: url,
         canvas_id: canvas_id,
         # shows up in PURL/Oembed viewer only
-        workspace_state: 'test',
+        workspace_state: {
+          companionWindows: companionWindows,
+          viewers: viewers,
+          windows: windows,
+          workspace: workspace
+  }     .to_json,
         search: params[:search],
         maxheight: block&.maxheight.presence || '600',
         suggested_search: (current_search_session&.query_params || {})[:q]

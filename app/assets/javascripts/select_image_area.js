@@ -6,7 +6,6 @@
   
     SelectImageArea = {
       init: function(el) {
-        // this.panel = el; // Store panel as a property
         this.panel = $(el);
   
         this.destroyExistingImageAreaModal();

@@ -74,6 +74,8 @@ Exhibits::Application.routes.draw do
     end
   end
 
+  post 'image_area', to: 'image_area#create'
+
   Blacklight::Engine.routes.default_scope = { path: "(:locale)", locale: Regexp.union(Spotlight::Engine.config.i18n_locales.keys.map(&:to_s)), module: 'blacklight', defaults: { locale: nil } }
   mount Blacklight::Engine => '/'
   Spotlight::Engine.routes.default_scope = { path: "(:locale)", locale: Regexp.union(Spotlight::Engine.config.i18n_locales.keys.map(&:to_s)), module: 'spotlight', defaults: { locale: nil } }

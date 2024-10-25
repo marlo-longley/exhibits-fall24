@@ -1,5 +1,4 @@
-<%# external IIIF manifest viewer, no workspace state. %>
-<%# debugger %>
+<%# external IIIF manifest viewer %>
 <% if document.manifest_url.present? %>
   <% manifest_url = document.manifest_url.starts_with?('/') ? root_url + document.manifest_url.slice(1..-1) : document.manifest_url %>
   <%= content_tag :iframe, '',
