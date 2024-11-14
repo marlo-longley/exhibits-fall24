@@ -20,6 +20,7 @@
         const target = $('[data-panel-image-pagination]', this.panel); // Use this.panel
   
         const resourceId = this.panel.data('resource-id'); // Use this.panel
+        console.log(this.panel.data)
         const selectImageAreaHtml = $('<a class="nav-link" id="select-image-area" href="/default-exhibit/select_image_area/' + resourceId + '">Edit image area</a>');
   
         // TODO: make this work in a modal (see below)

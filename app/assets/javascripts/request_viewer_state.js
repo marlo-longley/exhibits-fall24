@@ -35,14 +35,15 @@
                         console.log('Exhibits: received state:', parsedData.data);
                         // Pull out the data we need (we need all 4 of these)
                         let { companionWindows, windows, viewers, workspace } = parsedData.data;
+                        // Pull out the data we need (we need all 4 of these)
+                        // TODO: make sure we just only send these 4 keys and not more.
                         const result = JSON.stringify({ companionWindows, windows, viewers, workspace });
-                        // TODO send result to a controller, then write to a DB?
-                         // Send the JSON string to Rails
-                         fetch('/image_area', {
+                        
+                        fetch('/image_area', {
                             method: 'POST',
                             headers: {
                                 'Content-Type': 'application/json',
-                                // 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') // For CSRF protection
+                                // 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') 
                             },
                             body: result
                         })
